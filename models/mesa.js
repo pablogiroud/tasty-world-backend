@@ -8,7 +8,8 @@ const MesaSchema= new Schema({
         unique:true
     },
     qr:{
-        type: String
+        type: String,
+        require:[true, "El QR code es obligatorio"],
     },
     estado:{
         type:Boolean,

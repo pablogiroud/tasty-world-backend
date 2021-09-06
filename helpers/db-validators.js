@@ -42,7 +42,7 @@ const idMenuExiste = async (id) =>{
 const idMesaExiste = async (id) =>{
     const mesaExiste = await Mesa.findById(id)
 
-    if(!menuExiste){
+    if(!mesaExiste){
         throw new Error(`El id ${id} no existe`)
     }
 };
