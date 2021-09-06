@@ -38,6 +38,14 @@ router.put(
     menuesPut
 );
 
-router.delete("/:id", menuesDelete);
+router.delete(
+    "/:id",
+    [
+        check("id", "No es un ID válido").isMongoId(),
+        check("id").custom(idMenuExiste),
+        validarCampos
+    ],
+    menuesDelete
+);
 
 module.exports = router;

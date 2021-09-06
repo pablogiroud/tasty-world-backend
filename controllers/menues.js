@@ -1,9 +1,12 @@
 const {request, response}= require('express')
 const Menu=require("../models/menu")
 
-const menuesGet=(req = request, res = response)=>{
+const menuesGet = async (req = request, res = response)=>{
+    
+    const menu = await Menu.find({estado: true})
+
     res.json({
-        msg:"GET Tasty menues"
+        menu
     });
 }
 
@@ -22,7 +25,7 @@ const menuesPost = async (req = request, res = response)=>{
 const menuesPut = async (req = request, res = response)=>{
     const id = req.params.id;
     const {_id, ...resto} = req.body;
-    const menu = await Menu.findByIdAndUpdate(id, resto)
+    const menu = await Menu.findByIdAndUpdate(id, resto, {estado: false},{new: true})
     
     res.json({
         msg:"Tasty menu modificado coorectamente",
@@ -31,9 +34,9 @@ const menuesPut = async (req = request, res = response)=>{
 }
 
 const menuesDelete = async (req = request, res = response)=>{
+    const id = req.params.id;
+    const menu = await Menu.findByIdAndDelete(id);
     
-    const {id} = req.params;
-    const menu = await Menu.findByIdAndDelete(id)
     res.json({
         msg:"Un tasty menu se ha eliminado",
         menu

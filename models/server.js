@@ -9,6 +9,7 @@ class Server{
         this.app=express();
         this.usuariosPath="/api/usuarios";
         this.menuesPath="/api/menues";
+        this.mesasPath="/api/mesas";
         
         //conexion a la DB
         this.conectarDB();
@@ -19,6 +20,7 @@ class Server{
         //rutas
         this.usuariosRoutes();
         this.menuesRoutes();
+        this.mesasRoutes();
     }
 
     //funcion conectar a la DB
@@ -45,6 +47,10 @@ class Server{
     
     menuesRoutes(){
         this.app.use(this.menuesPath, require("../routes/menues"));
+    }
+    
+    mesasRoutes(){
+        this.app.use(this.menuesPath, require("../routes/mesas"));
     }
 
     listen(){

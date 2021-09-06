@@ -2,9 +2,13 @@ const {request, response} = require('express');
 const Usuario = require("../models/usuario");
 const bcrypt = require('bcryptjs');
 
-const usuariosGet=(req = request, res = response)=>{
+const usuariosGet = async(req = request, res = response)=>{
+    
+    const usuario = await Usuario.find({estado: true})
+    
     res.json({
-        msg:"GET usuarios"
+        msg:"GET usuarios",
+        usuario
     });
 }
 

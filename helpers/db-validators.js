@@ -1,5 +1,6 @@
 const Usuario = require("../models/usuario")
 const Menu = require("../models/menu")
+const Mesa = require("../models/mesa")
 
 
 //Email 
@@ -37,10 +38,19 @@ const idMenuExiste = async (id) =>{
     }
 };
 
+//mesas
+const idMesaExiste = async (id) =>{
+    const mesaExiste = await Mesa.findById(id)
+
+    if(!menuExiste){
+        throw new Error(`El id ${id} no existe`)
+    }
+};
+
 module.exports={
     emailExiste,
     idUsuarioExiste,
     nombreMenuExiste,
-    idMenuExiste
-
+    idMenuExiste,
+    idMesaExiste
 }
